@@ -31,6 +31,47 @@ public class TakeInputlevelwise2 {
 		}
 		return root;
 	}
+
+	public static void printAtK(TreeNode<Integer>root,int k) {
+		if(k<0) {
+			return;
+		}
+		if(k==0) {
+			System.out.print(root.data+" "+","+" ");
+		}
+		for(int i=0;i<root.children.size();i++) {
+			printAtK(root.children.get(i),k-1);
+		}
+		System.out.println();
+	}
+
+	public static int height(TreeNode<Integer>root) {s
+		if(root==null) {
+			return -1;
+		}
+		int maxheight = 0;
+		for(int i=0;i<root.children.size();i++) {
+			int childheight = height(root.children.get(i));
+			if(childheight > maxheight) {
+				maxheight = childheight;
+			}
+		}
+		return maxheight+1;
+	}
+	
+	public static int largest(TreeNode<Integer>root) {
+		if(root == null) {
+			return Integer.MIN_VALUE;
+		}
+		int largestdata = root.data;
+		for(int i=0;i<root.children.size();i++) {
+			int childdata = largest(root.children.get(i));
+			if(childdata > largestdata) {
+				largestdata = childdata;
+			}
+		}
+		return largestdata;
+	}
 	
 	public static int noofnodes(TreeNode<Integer>root) {
 		if(root == null) {
