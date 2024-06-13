@@ -1,5 +1,7 @@
 package Tree;
 import java.util.*;
+
+import javax.swing.tree.TreeNode;
 public class TakeInputlevelwise2 {
 	
 	public static TreeNode<Integer> takeInput(){
@@ -39,6 +41,41 @@ public class TakeInputlevelwise2 {
 			count += noofnodes(root.children.get(i)); 
 		}
 		return count;
+	}
+
+	public static int leafnode(TreeNode<Integer>root) {
+		if(root == null) {
+			return 0;
+		}
+		if(root.children.size()==0) {
+			return 1;
+		}
+		int leafcount = 0;
+		for(int i=0;i<root.children.size();i++) {
+			leafcount+=leafnode(root.children.get(i));
+		}
+		return leafcount;
+	}
+	
+	public static void printpreorder(TreeNode<Integer>root) {
+		if(root == null) {
+			return  ;
+		}
+		System.out.println(root.data+" ");
+		for(int i=0;i<root.children.size();i++) {
+			printpreorder(root.children.get(i));
+		}
+		
+	}
+	
+	public static void printpostorder(TreeNode<Integer>root) {
+		if(root == null) {
+			return ;
+		}
+		for(int i=0;i<root.children.size();i++) {
+			   printpostorder(root.children.get(i));
+		}
+		System.out.println(root.data);
 	}
 	
 	public static void print(TreeNode<Integer>root) {
